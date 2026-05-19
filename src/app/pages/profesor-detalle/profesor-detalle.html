@@ -1,0 +1,34 @@
+<div class="page-container">
+  <div class="page-header">
+    <div class="title-section">
+      <h1>Detalle del Profesor</h1>
+      <p>Información completa del docente.</p>
+    </div>
+    <div class="action-section">
+      <button class="btn btn-secondary" (click)="volver()">Volver</button>
+    </div>
+  </div>
+
+  @if (loading) {
+    <div class="loading-state">Cargando datos...</div>
+  } @else if (profesor) {
+    <div class="card">
+      <div class="detail-grid">
+        <div class="detail-item">
+          <span class="detail-label">ID</span>
+          <span class="detail-value">#{{ profesor.id }}</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Nombre Completo</span>
+          <span class="detail-value">{{ profesor.nombre }} {{ profesor.apellidos }}</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Especialidad</span>
+          <span class="detail-value"><span class="badge">{{ profesor.especialidad }}</span></span>
+        </div>
+      </div>
+    </div>
+  } @else {
+    <div class="error-state">No se ha encontrado el profesor.</div>
+  }
+</div>

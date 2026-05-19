@@ -1,0 +1,55 @@
+<div class="page-container">
+  <div class="page-header">
+    <div class="title-section">
+      <h1>Plan de Estudios</h1>
+      <p>Consulta las asignaturas impartidas en el centro.</p>
+    </div>
+  </div>
+
+  <div class="card table-card">
+
+    <div class="table-responsive">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Asignatura</th>
+            <th>Horas</th>
+            <th>Profesor</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (subject of subjects; track subject.id) {
+          <tr  style="cursor: pointer;" class="hover-row">
+            <td>#{{subject.id}}</td>
+            <td (click)="verDetalle(subject.id)">
+              <span class="name" style="font-weight: 500;">{{subject.nombre}}</span>
+            </td>
+            <td>{{subject.horas}} h/sem</td>
+            <td>
+              <div class="user-cell" *ngIf="subject.profesor">
+                <div class="avatar-small">{{subject.profesor.nombre.charAt(0)}}{{subject.profesor.apellidos.charAt(0)}}</div>
+                <div class="user-details">
+                  <span class="name">{{subject.profesor.nombre}} {{subject.profesor.apellidos}}</span>
+                  <span class="email">{{subject.profesor.nombre.toLowerCase()}}.{{subject.profesor.apellidos.split(' ')[0].toLowerCase()}}@ies.com</span>
+                </div>
+              </div>
+              
+              <span *ngIf="!subject.profesor" class="text-muted">Sin asignar</span>
+            </td>
+            <td>
+              <div class="action-section">
+                <button class="btn btn-secondary" (click)="verAlumnos(subject.id)">Alumnos matriculados</button>
+              </div>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="table-pagination">
+      <span>Mostrando 1 a {{subjects.length}} asignaturas</span>
+    </div>
+  </div>
+</div>

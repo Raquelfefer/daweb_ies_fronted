@@ -1,0 +1,40 @@
+<div class="page-container">
+  <div class="page-header">
+    <div class="title-section">
+      <h1>Gestión de Matrículas</h1>
+      <p>Administra las inscripciones de alumnos en las diferentes asignaturas.</p>
+    </div>
+  </div>
+
+  <div class="card table-card">
+
+    <div class="table-responsive">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Alumno</th>
+            <th>Asignatura</th>
+            <th>Curso</th>
+            <th>Nota Media</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (m of matriculas; track m.id) {
+          <tr (click)="verDetalle(m.id)" style="cursor: pointer;" class="hover-row">
+            <td>#{{m.id}}</td>
+            <td>{{m.alumno.nombre}} {{m.alumno.apellidos}}</td>
+            <td>{{m.asignatura.nombre}}</td>
+            <td>{{m.curso}}</td>
+            <td>
+              <span class="badge" [ngClass]="m.notaMedia >= 5 ? 'badge-success' : 'badge-warning'">
+                {{m.notaMedia}}
+              </span>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

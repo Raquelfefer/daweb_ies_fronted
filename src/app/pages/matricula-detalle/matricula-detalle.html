@@ -1,0 +1,46 @@
+<div class="page-container">
+  <div class="page-header">
+    <div class="title-section">
+      <h1>Detalle de la Matrícula</h1>
+      <p>Información completa de la inscripción del alumno.</p>
+    </div>
+    <div class="action-section">
+      <button class="btn btn-secondary" (click)="volver()">Volver</button>
+    </div>
+  </div>
+
+  @if (loading) {
+    <div class="loading-state">Cargando datos...</div>
+  } @else if (matricula) {
+    <div class="card">
+      <div class="detail-grid">
+        <div class="detail-item">
+          <span class="detail-label">ID Matrícula</span>
+          <span class="detail-value">#{{ matricula.id }}</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Alumno</span>
+          <span class="detail-value">{{ matricula.alumno.nombre }} {{ matricula.alumno.apellidos }}</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Asignatura</span>
+          <span class="detail-value">{{ matricula.asignatura.nombre }}</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Curso</span>
+          <span class="detail-value">{{ matricula.curso }}</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Nota Media</span>
+          <span class="detail-value">
+            <span class="badge" [ngClass]="matricula.notaMedia >= 5 ? 'badge-success' : 'badge-warning'">
+              {{ matricula.notaMedia }}
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+  } @else {
+    <div class="error-state">No se ha encontrado la matrícula.</div>
+  }
+</div>

@@ -1,0 +1,44 @@
+<div class="page-container">
+  <div class="page-header">
+    <div class="title-section">
+      <h1>Claustro de Profesores</h1>
+      <p>Gestión del personal docente y sus especialidades.</p>
+    </div>
+  </div>
+
+  <div class="card table-card">
+
+    <div class="table-responsive">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Profesor</th>
+            <th>Especialidad</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (prof of profesores; track prof.id) {
+          <tr (click)="verDetalle(prof.id)" style="cursor: pointer;" class="hover-row">
+            <td>#{{prof.id}}</td>
+            <td>
+              <div class="user-cell">
+                <div class="avatar-small">{{prof.nombre.charAt(0)}}{{prof.apellidos.charAt(0)}}</div>
+                <div class="user-details">
+                  <span class="name">{{prof.nombre}} {{prof.apellidos}}</span>
+                  <span class="email">{{prof.nombre.toLowerCase()}}.{{prof.apellidos.split(' ')[0].toLowerCase()}}@ies.com</span>
+                </div>
+              </div>
+            </td>
+            <td><span class="badge">{{prof.especialidad}}</span></td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="table-pagination">
+      <span>Mostrando 1 a {{profesores.length}} profesores</span>
+    </div>
+  </div>
+</div>

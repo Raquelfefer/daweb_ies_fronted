@@ -1,0 +1,82 @@
+<div class="page-container">
+  <div class="page-header">
+    <div class="title-section">
+      <h1>Gestión de Alumnos en {{ asignatura?.nombre }}</h1>
+      <p>Visualiza y administra los alumnos matriculados en {{ asignatura?.nombre }}
+      </p>
+    </div>
+  </div>
+  <div class="action-section">
+      <button class="btn btn-secondary" (click)="volver()">Volver</button>
+  </div>
+
+  @if (loading) {
+    <div class="loading-state">Cargando datos...</div>
+  } @else if (asignatura) {
+    <div class="card">
+      <div class="detail-grid">
+        <div class="detail-item">
+          <span class="detail-label">ID</span>
+          <span class="detail-value">#{{ asignatura.id }}</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Nombre</span>
+          <span class="detail-value">{{ asignatura.nombre }}</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Horas</span>
+          <span class="detail-value">{{ asignatura.horas }} h/sem</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Profesor Asignado</span>
+          <span class="detail-value">
+            @if (asignatura.profesor) {
+              {{ asignatura.profesor.nombre }} {{ asignatura.profesor.apellidos }}
+            } @else {
+              <span class="text-muted">Sin asignar</span>
+            }
+          </span>
+        </div>
+      </div>
+    </div>
+  } @else {
+    <div class="error-state">No se ha encontrado la asignatura.</div>
+  }
+
+  <h3>Alumnos Matriculados</h3>
+  <div class="card table-card">
+
+    <div class="table-responsive">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre Completo</th>
+            <th>iPasen</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (alumno of alumnosMatriculados; track alumno.id) {
+          <tr (click)="verDetalle(alumno.id)" style="cursor: pointer;" class="hover-row">
+            <td>#{{alumno.id}}</td>
+            <td>
+              <div class="user-cell">
+                <div class="avatar-small">{{alumno.nombre.charAt(0)}}{{alumno.apellidos.charAt(0)}}</div>
+                <div class="user-details">
+                  <span class="name">{{alumno.nombre}} {{alumno.apellidos}}</span>
+                </div>
+              </div>
+            </td>
+            <td><code class="code-badge">{{alumno.ipasen}}</code></td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="table-pagination">
+      <span>Mostrando 1 a {{alumnosMatriculados.length}} alumnos</span>
+    </div>
+  </div>
+</div>
+

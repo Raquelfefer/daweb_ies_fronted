@@ -1,0 +1,43 @@
+<div class="page-container">
+  <div class="page-header">
+    <div class="title-section">
+      <h1>Gestión de Alumnos</h1>
+      <p>Visualiza y administra todos los alumnos registrados en el centro.</p>
+    </div>
+  </div>
+
+  <div class="card table-card">
+
+    <div class="table-responsive">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre Completo</th>
+            <th>iPasen</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (alumno of alumnos; track alumno.id) {
+          <tr (click)="verDetalle(alumno.id)" style="cursor: pointer;" class="hover-row">
+            <td>#{{alumno.id}}</td>
+            <td>
+              <div class="user-cell">
+                <div class="avatar-small">{{alumno.nombre.charAt(0)}}{{alumno.apellidos.charAt(0)}}</div>
+                <div class="user-details">
+                  <span class="name">{{alumno.nombre}} {{alumno.apellidos}}</span>
+                </div>
+              </div>
+            </td>
+            <td><code class="code-badge">{{alumno.ipasen}}</code></td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="table-pagination">
+      <span>Mostrando 1 a {{alumnos.length}} alumnos</span>
+    </div>
+  </div>
+</div>
