@@ -1,4 +1,4 @@
 export const environment = {
-  production: false,
-  baseURL: 'http://localhost:8080'
+  production: true,
+  baseURL: 'https://daweb_ies.onrender.com'
 };
